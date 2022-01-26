@@ -175,11 +175,12 @@ op_allocator op_ll_initialize_allocator(const size_t object_size, const size_t i
  */
 #define OP_HL_DECLARE_ALLOCATOR(TYPE, COUNT, MODE)                            \
 static op_allocator TYPE##_allocator;                                         \
+static bool TYPE##_allocator_initialized = false;                             \
 static inline void initialize_##TYPE##_allocator(void)                        \
 { TYPE##_allocator = op_ll_initialize_allocator(sizeof(TYPE), COUNT, MODE); } \
 static inline TYPE *allocate_##TYPE(void)                                     \
-{ static bool initialized = false; if (!initialized)                          \
-  { initialize_##TYPE##_allocator(); initialized = true; }                    \
+{ if (!TYPE##_allocator_initialized)                                          \
+  { initialize_##TYPE##_allocator(); TYPE##_allocator_initialized = true; }   \
   return op_ll_allocate_object(TYPE##_allocator); }                           \
 static inline void deallocate_##TYPE(TYPE *object)                            \
 { op_ll_deallocate_object(TYPE##_allocator, object); }                        \
