@@ -41,6 +41,10 @@ grindopa : $(BINDIR)/opatest
 	echo Running ./$^
 	$(VALGRIND) ./$^ > /dev/null
 
+.PHONE : docs
+docs :
+	doxygen
+
 -include marker
 marker: Makefile
 	@touch $@
