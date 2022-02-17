@@ -72,7 +72,7 @@ typedef struct op_allocator_stats
  * A weakly-linked implementation is provided in case no special error handling
  * is desired.
  */
-void op_error_handler(const char *file, const int line, const char* error_message);
+void op_error_handler(const char *file, const int line, const char *error_message);
 
 /** @brief Allocate an object in the given allocator context.
  *

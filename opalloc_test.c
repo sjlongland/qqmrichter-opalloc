@@ -43,7 +43,8 @@ static void ll_test1(void)
  */
 static void ll_test2(void)
 {
-    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT, OP_DOUBLING_INDIVIDUAL);
+    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT,
+                              OP_DOUBLING_INDIVIDUAL);
 
     test_object *item1a = op_ll_allocate_object(allocator1);
     assert(item1a != NULL);
@@ -76,7 +77,8 @@ static void ll_test2(void)
  */
 static void ll_test3(void)
 {
-    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT, OP_DOUBLING_INDIVIDUAL);
+    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT,
+                              OP_DOUBLING_INDIVIDUAL);
 
     test_object *item1a = op_ll_allocate_object(allocator1);
     test_object *item1b = op_ll_allocate_object(allocator1);
@@ -106,7 +108,8 @@ static void ll_test3(void)
  */
 static void ll_test4(void)
 {
-    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT, OP_DOUBLING_INDIVIDUAL);
+    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT,
+                              OP_DOUBLING_INDIVIDUAL);
 
     test_object *item1a = op_ll_allocate_object(allocator1);
     test_object *item1b = op_ll_allocate_object(allocator1);
@@ -145,7 +148,8 @@ static void ll_test4(void)
  */
 static void ll_test5(void)
 {
-    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT, OP_DOUBLING_INDIVIDUAL);
+    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT,
+                              OP_DOUBLING_INDIVIDUAL);
 
     test_object *item1a = op_ll_allocate_object(allocator1);
     test_object *item1b = op_ll_allocate_object(allocator1);
@@ -186,7 +190,8 @@ static void ll_test5(void)
  */
 static void ll_test6(void)
 {
-    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT, OP_LINEAR_INDIVIDUAL);
+    op_allocator allocator1 = op_ll_initialize_allocator(sizeof(test_object), MINIMUM_ALLOCATION_COUNT,
+                              OP_LINEAR_INDIVIDUAL);
 
     test_object *item1a = op_ll_allocate_object(allocator1);
     test_object *item1b = op_ll_allocate_object(allocator1);
@@ -365,7 +370,7 @@ static test_func hl_tests[] =
 };
 
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     fprintf(stdout, "%s (%s)\n", PROJECT_NAME, PROJECT_OID_DOTTED);
 
@@ -373,7 +378,8 @@ int main(int argc, char** argv)
     fprintf(stdout, "Low-level tests: ");
     for (size_t i = 0; ll_tests[i] != NULL; i++)
     {
-        fprintf(stdout, "%lu ", i + 1); fflush(stdout);
+        fprintf(stdout, "%lu ", i + 1);
+        fflush(stdout);
         ll_tests[i]();
     }
     fprintf(stdout, "\n");
@@ -381,7 +387,8 @@ int main(int argc, char** argv)
     fprintf(stdout, "High-level tests: ");
     for (size_t i = 0; hl_tests[i] != NULL; i++)
     {
-        fprintf(stdout, "%lu ", i + 1); fflush(stdout);
+        fprintf(stdout, "%lu ", i + 1);
+        fflush(stdout);
         hl_tests[i]();
     }
     fprintf(stdout, "\n");
@@ -390,7 +397,7 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void op_error_handler(const char *file, const int line, const char* error_message)
+void op_error_handler(const char *file, const int line, const char *error_message)
 {
     fprintf(stderr, "ERROR: %s (%d): %s\n", file, line, error_message);
 }

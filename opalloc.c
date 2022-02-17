@@ -222,7 +222,7 @@ op_allocator op_ll_initialize_allocator(const size_t object_size, const size_t i
         rv->initialized = true;
 
         /* allocate the space for the object pool itself. */
-        if ((rv->pool = calloc(rv->maximum_objects, sizeof(_ab_t*))))
+        if ((rv->pool = calloc(rv->maximum_objects, sizeof(_ab_t *))))
         {
             if (use_chunks)
             {
@@ -265,7 +265,7 @@ static bool fill_chunks(op_allocator allocator, const size_t offset, const size_
     {
         for (size_t i = 0; i < object_count; i++)
         {
-            allocator->pool[i+offset] = (_ab_t *) &chunk[i * entry_size];
+            allocator->pool[i + offset] = (_ab_t *) &chunk[i * entry_size];
         }
     }
     else
@@ -294,7 +294,7 @@ static bool grow_pool(op_allocator allocator)
         new_size = old_size * 2;
     }
 
-    allocator->pool = realloc(allocator->pool, sizeof(_ab_t*) * new_size);
+    allocator->pool = realloc(allocator->pool, sizeof(_ab_t *) * new_size);
     if (allocator->pool)
     {
         /* we use the for loop here because valgrind is too stupid to figure out memset */
@@ -324,7 +324,7 @@ static bool grow_pool(op_allocator allocator)
 * Weakly-linked function implementations.
 *******************************************************************************/
 
-__attribute((weak)) void op_error_handler(const char *file, const int line, const char* error_message)
+__attribute((weak)) void op_error_handler(const char *file, const int line, const char *error_message)
 {
     UNUSED(file);
     UNUSED(line);
@@ -335,6 +335,7 @@ __attribute((weak)) void op_error_handler(const char *file, const int line, cons
 * Concealed function used for debugging purposes only.
 *******************************************************************************/
 
+#if !defined(__ARM_EABI__)
 #include <stdio.h>
 void dump_allocator(op_allocator allocator)
 {
@@ -358,3 +359,4 @@ void dump_allocator(op_allocator allocator)
         }
     }
 }
+#endif
